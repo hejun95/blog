@@ -1,45 +1,31 @@
-name: GitHub Pages
+name: Deploy Next.js App
 
 on:
   push:
     branches:
-      - master
-  pull_request:
+      - master  # 或者你使用的默认分支名称
 
 jobs:
-  deploy:
-    runs-on: ubuntu-22.04
-    permissions:
-      contents: write
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-    steps:
-      - uses: actions/checkout@v3
+  build-and-deploy:
+    runs-on: ubuntu-latest
 
-      - name: Setup Node
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16'  # 或者你使用的Node.js版本
 
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> "${GITHUB_OUTPUT}"
+      - name: Install dependencies
+        run: npm install
 
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.yarn-cache.outputs.YARN_CACHE_DIR }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+      - name: Build the project
+        run: npm run build
 
-      - run: yarn install --frozen-lockfile
-      - run: yarn build
-      - run: yarn export
-
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: ${{ github.ref == 'refs/heads/main' }}
         with:
-          github_token: ${{ secrets.PERSONAL_TOKEN  }}
-          publish_dir: ./out
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out  # Next.js默认的静态文件输出目录
