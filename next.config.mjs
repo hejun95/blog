@@ -1,9 +1,13 @@
 /** @type {import('next').NextConfig} */
+
+let assetPrefix = "/blog/";
+let basePath = "/blog/";
+
 const nextConfig = {
-    output: 'export',
-    images: {
-      unoptimized: true
-    }
+  // basePath,
+  // assetPrefix,
+  output: "export",
 };
 
 export default nextConfig;
+
