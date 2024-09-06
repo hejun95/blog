@@ -1,36 +1,45 @@
+name: GitHub Pages
 
-name: Actions CI - Next.js version 14 static site export, GitHub Actions Build and Deploy
 on:
   push:
-    branches: [ master ]
-# 执行的一项或多项任务
+    branches:
+      - master
+  pull_request:
+
 jobs:
-  build-and-deploy:
-    # 运行在虚拟机环境ubuntu-latest
-    # https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idruns-on
-    runs-on: ubuntu-latest
+  deploy:
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
     steps:
-    - name: 获取源码  🛎️
-      uses: actions/checkout@v3
-    - name: Node环境版本 🗜️
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-    - name: 安装 Pnpm 🧬
-      uses: pnpm/action-setup@v2
-      id: pnpm-install
-      with:
-          version: 7
-          run_install: true
-    - name: 安装依赖 ⚙️
-      run: pnpm install
-    - name: 打包 🏗️
-      run: |
-        npm run build
-        touch out/.nojekyll
-    - name: 部署 🚀
-      uses: JamesIves/github-pages-deploy-action@v4
-      with:
-        branch: gh-pages
-        folder: out
-        clean: true
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> "${GITHUB_OUTPUT}"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache.outputs.YARN_CACHE_DIR }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - run: yarn install --frozen-lockfile
+      - run: yarn build
+      - run: yarn export
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.ref == 'refs/heads/main' }}
+        with:
+          github_token: ${{ secrets.PERSONAL_TOKEN  }}
+          publish_dir: ./out
