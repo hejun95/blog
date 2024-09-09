@@ -17,7 +17,7 @@ export default function Home() {
           我的博客-林休休是大美女
         </p>
         {[1, 2, 3, 4, 5].map((el) => (
-          <div style={{ display: 'block', width: '100%', height: '100%' }} >
+          <div style={{ display: 'block', width: '100%', height: '100%' }} key={el}>
             <img
               src={`./home_${el}.jpg`}
               alt="home image"
