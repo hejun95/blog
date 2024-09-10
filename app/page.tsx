@@ -14,11 +14,13 @@ export default function Home() {
           我的博客-林休休是大美女
         </p>
         {[1, 2, 3, 4, 5].map((el) => (
-          <div style={{ display: 'block', position:'relative', width: '100%', height: '100%' }} key={el}>
+          <div style={{ display: 'block', position:'relative', width: '100%' }} key={el}>
             <Image
               src={`./home_${el}.jpg`}
               alt="home image"
-              fill
+              width="100"
+              height="100"
+              layout="responsive"
             // data-aos="fade-up" data-aos-duration="800"
             />
           </div>
