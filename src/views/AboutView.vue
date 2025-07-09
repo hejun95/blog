@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>林慧琪的小猪窝</h1>
+    <h1>林慧琪的小金猪窝</h1>
   </div>
 </template>
 
