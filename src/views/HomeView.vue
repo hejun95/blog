@@ -2,7 +2,7 @@
 
 <template>
   <div class="home">
-    <h1>林慧琪的猪窝</h1>
+    <h1>林慧琪的金猪窝</h1>
   </div>
 </template>
 
