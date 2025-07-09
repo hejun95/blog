@@ -1,15 +1,9 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>林慧琪的小猪窝</h1>
   </div>
 </template>
 
 <style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
+/* 使用现代CSS，无需媒体查询 */
 </style>
