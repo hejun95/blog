@@ -149,6 +149,16 @@ onUnmounted(() => {
 
 <template>
   <div class="danmaku-fullscreen">
+    <!-- 背景图片容器 -->
+    <div class="background-container">
+      <div class="bg-half bg-left">
+        <img src="@/assets/imgs/bg1.jpg" alt="背景图片1" class="bg-image">
+      </div>
+      <div class="bg-half bg-right">
+        <img src="@/assets/imgs/bg2.jpg" alt="背景图片2" class="bg-image">
+      </div>
+    </div>
+    
     <!-- 弹幕容器 -->
     <div ref="containerRef" class="danmaku-container">
       <!-- 弹幕元素会动态添加到这里 -->
@@ -160,11 +170,37 @@ onUnmounted(() => {
 .danmaku-fullscreen {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   position: relative;
   overflow: visible; /* 改为visible，避免裁剪弹幕 */
   margin: 0;
   padding: 0;
+}
+
+/* 背景图片容器 */
+.background-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  z-index: 0;
+}
+
+/* 背景图片半屏容器 */
+.bg-half {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 背景图片样式 */
+.bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
 }
 
 /* 弹幕容器 */
