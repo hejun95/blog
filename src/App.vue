@@ -34,10 +34,9 @@ import ArcoNavBar from './components/ArcoNavBar.vue'
 }
 
 .app-main {
-  flex: 1;
-  max-width: min(1280px, 95vw);
-  margin: 0 auto;
-  width: 100%;
+  width: 100vw;
+  height: 92vh;
   box-sizing: border-box;
+  overflow: hidden;
 }
 </style>

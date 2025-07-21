@@ -32,7 +32,6 @@ h1 {
 /* 页面容器统一样式 - 使用相对单位和现代CSS */
 .home, .about {
   width: 100%;
-  padding: clamp(1rem, 4vw, 3rem);
   min-height: calc(100vh - clamp(50px, 8vh, 80px));
   display: flex;
   align-items: center;

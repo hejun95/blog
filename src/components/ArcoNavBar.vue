@@ -6,8 +6,8 @@
       @menu-item-click="onMenuClick"
       class="nav-menu"
     >
-      <a-menu-item key="/">Home</a-menu-item>
-      <a-menu-item key="/about">About</a-menu-item>
+      <a-menu-item key="/">林慧琪的应援会</a-menu-item>
+      <a-menu-item key="/about">Games</a-menu-item>
     </a-menu>
   </div>
 </template>
