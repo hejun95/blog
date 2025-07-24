@@ -1,1 +1,0 @@
-import{_ as s,c,a,o}from"./index-DrKU2gPJ.js";const t={},r={class:"about"};function n(l,e){return o(),c("div",r,e[0]||(e[0]=[a("div",{class:"game-container"},[a("iframe",{src:"https://hejun95.github.io/small_games/",class:"game-frame",frameborder:"0",allowfullscreen:""})],-1)]))}const d=s(t,[["render",n],["__scopeId","data-v-c6c9dc8b"]]);export{d as default};
