@@ -7,7 +7,8 @@
       class="nav-menu"
     >
       <a-menu-item key="/">林慧琪的应援会</a-menu-item>
-      <a-menu-item key="/about">Games</a-menu-item>
+      <a-menu-item key="/about">去玩啥？</a-menu-item>
+      <a-menu-item key="/wheel">去干嘛？</a-menu-item>
     </a-menu>
   </div>
 </template>
