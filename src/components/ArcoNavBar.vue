@@ -2,9 +2,9 @@
   <div class="nav-container">
     <a-menu
       mode="horizontal"
+      accordion
       :selected-keys="[selectedKey]"
       @menu-item-click="onMenuClick"
-      class="nav-menu"
     >
       <a-menu-item key="/">林慧琪的应援会</a-menu-item>
       <a-menu-item key="/about">去玩啥？</a-menu-item>
@@ -39,7 +39,6 @@ function onMenuClick(key: string) {
 .nav-container {
   width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
   border: none;
 }
 </style>
